@@ -1,0 +1,72 @@
+<!--Authored by Nii_Odenkey-->
+{% extends 'booking/base.html' %}
+
+{% load static %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'booking/styles/tail.select-default.min.css' %}">
+{% endblock %}
+
+{% block body_content %}
+<div class="container-fluid">
+    <div class="row main-sect">
+        <div class="col-xs-12 col-sm-12 col-md-0 col-lg-6 content">
+            <div class="booking-form">
+                <h4>Book FR Logistics</h4>
+                <p>Want FR Logistics to handle the transport and or Warehousing of your items? Just fill out this
+                    form
+                    to book and one of our representatives will get in touch with you. Thank you.</p>
+                <ul class="nav nav-pills">
+                    <li class="nav-item">
+                        <a class="nav-link my-link active" href="#first" data-toggle="tab">delivery</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link my-link" href="#second" data-toggle="tab">safe-keeping</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link my-link" href="#third" data-toggle="tab">warehousing</a>
+                    </li>
+                </ul>
+                <div class="rule" style="margin-top: -10px;"></div>
+                <div class="tab-content">
+
+
+                    <form action="{% url 'book' %}" id="first" class="tab-pane show active"
+                          method="POST">
+                        {% csrf_token %}
+                        {{ delivery_form.as_p }}
+                        <input type="submit" id="submit" class="btn" style="margin-top: 20px;">
+                    </form>
+
+
+                    <form action="{% url 'book' %}" id="second" class="tab-pane"
+                          method="POST">
+                        {% csrf_token %}
+                        {{ safekeeping_form.as_p }}
+                        <input type="submit" id="submit2" class="btn" style="margin-top: 20px;">
+                    </form>
+
+
+                    <form action="{% url 'book' %}" id="third" class="tab-pane" method="POST">
+                        {% csrf_token %}
+                        {{ warehousing_form.as_p }}
+                        <span></span><br>
+                        <input type="submit" id="submit3" class="btn" style="margin-top: 20px;">
+                    </form>
+
+
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-0 col-sm-0 col-md-0 col-lg-6 book-image">
+        </div>
+    </div>
+
+</div>
+
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'booking/scripts/tail.js' %}"></script>
+<script src="{% static 'booking/scripts/book_validation.js' %}"></script>
+{% endblock %}
